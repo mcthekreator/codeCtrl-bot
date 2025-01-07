@@ -11,7 +11,12 @@ import (
 )
 
 func main() {
-	sess, err := discordgo.New("Bot ")
+	botToken := os.Getenv("DISCORD_BOT_TOKEN") // Use an environment variable
+	if botToken == "" {
+		log.Fatal("Bot token not set in environment variables")
+	}
+
+	sess, err := discordgo.New("Bot " + botToken)
 	if err != nil {
 		log.Fatal(err)
 	}
